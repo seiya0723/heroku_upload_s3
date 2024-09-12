@@ -4,7 +4,7 @@ from django.views import View
 from .models import Album,Document
 from .forms import AlbumForm,DocumentForm
 
-import magic
+#import magic
 
 ALLOWED_MIME    = [ "application/pdf" ]
 
@@ -51,12 +51,14 @@ class DocumentView(View):
             print(form.errors)
             return redirect("upload:document")
 
+
+        """
         mime_type   = magic.from_buffer(request.FILES["file"].read(1024) , mime=True)
-        
         if not mime_type in ALLOWED_MIME:
             print("このファイルのMIMEは許可されていません。")
             print(mime_type)
             return redirect("upload:document")
+        """
 
 
         print("バリデーションOK")
