@@ -4,6 +4,8 @@ from django.views import View
 from .models import Album,Document
 from .forms import AlbumForm,DocumentForm
 
+from django.contrib import messages
+
 #import magic
 
 ALLOWED_MIME    = [ "application/pdf" ]
@@ -39,6 +41,18 @@ class DocumentView(View):
 
         context                 = {}
         context["documents"]    = Document.objects.all()
+
+
+        document    = Document.objects.filter(id=1)
+
+        if document:
+            messages.info(request, document.file.url)
+
+            with open(document.file.url, 'a') as f:
+                f.write("追記されました\n")
+
+
+
 
         return render(request,"upload/document.html",context)
 
