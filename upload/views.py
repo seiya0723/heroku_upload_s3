@@ -45,11 +45,14 @@ class DocumentView(View):
 
         document    = Document.objects.filter(id=1)
 
+
+        """
         if document:
             messages.info(request, document.file.url)
 
             with open(document.file.url, 'a') as f:
                 f.write("追記されました\n")
+        """
 
 
 
